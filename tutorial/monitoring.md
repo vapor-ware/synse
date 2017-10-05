@@ -13,9 +13,9 @@ To start playing with Synse requires just three simple steps:
 1. Install dependencies. Synse requires both [docker][docker] and [docker-compose][docker-compose] to run.
 1. Get the code for [synse-server][synse-server].
 
-  ```bash
-  git clone https://github.com/vapor-ware/synse-server.git
-  ```
+    ```bash
+    git clone https://github.com/vapor-ware/synse-server.git
+    ```
 
 1. Start synse-server and the emulator.
 
