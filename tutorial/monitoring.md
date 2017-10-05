@@ -19,9 +19,9 @@ To start playing with Synse requires just three simple steps:
 
 1. Start synse-server and the emulator.
 
-  ```bash
-  docker-compose -f compose/emulator.yml up -d
-  ```
+    ```bash
+    docker-compose -f compose/emulator.yml up -d
+    ```
 
 These steps will configure synse-server to pull data from an IPMI emulator. You’ll end up with 6 racks that have 6 servers each. You can check this out from the command line:
 
@@ -67,27 +67,27 @@ Writing scripts or running lots of CURL commands gets old quickly. GraphQL provi
 
 1. Get the [code][synse-graphql].
 
-  ```bash
-  git clone https://github.com/vapor-ware/synse-graphql.git
-  ```
+    ```bash
+    git clone https://github.com/vapor-ware/synse-graphql.git
+    ```
 
 2. Setup docker networking:
 
-  ```bash
-  docker network create synse
-  docker network connect synse synse-server
-  ```
+    ```bash
+    docker network create synse
+    docker network connect synse synse-server
+    ```
 
 3. Startup synse-graphql.
 
-  ```bash
-  docker run -d --rm \
-    --name=synse-graphql \
-    --network=synse \
-    -e SYNSE_SERVER=synse-server:5000 \
-    -p 5001:5001 \
-    vaporio/synse-graphql
-  ```
+    ```bash
+    docker run -d --rm \
+        --name=synse-graphql \
+        --network=synse \
+        -e SYNSE_SERVER=synse-server:5000 \
+        -p 5001:5001 \
+        vaporio/synse-graphql
+    ```
 
 There is a built-in web interface that makes it easy to look at the schema and run queries. Go to `http://localhost:5001/graphql` to pull it up. From here, you'll be able to write some queries against the emulated data center and see what data is available. A sample query that returns all the temperature data is:
 
@@ -153,20 +153,20 @@ Prometheus ingests data via exporters. To get the Synse Prometheus exporter work
 
 1. Get the [code][synse-prometheus]
 
-  ```bash
-  git clone https://github.com/vapor-ware/synse-prometheus.git
-  ```
+    ```bash
+    git clone https://github.com/vapor-ware/synse-prometheus.git
+    ```
 
 1. Startup the exporter.
 
-  ```bash
-  docker run -d --rm \
-    --name=synse-prometheus \
-    --network=synse \
-    -e SYNSE_GRAPHQL=synse-graphql:5001 \
-    -p 9243:9243 \
-    vaporio/synse-prometheus
-  ```
+    ```bash
+    docker run -d --rm \
+        --name=synse-prometheus \
+        --network=synse \
+        -e SYNSE_GRAPHQL=synse-graphql:5001 \
+        -p 9243:9243 \
+        vaporio/synse-prometheus
+    ```
 
 To verify that the Prometheus exporter is up and running, you can hit the same endpoint Prometheus would to gather metrics:
 
@@ -181,14 +181,14 @@ Next, we will run prometheus. We’ll be using docker to run prometheus. If you�
 1. Get into the `synse-prometheus` directory.
 1. Startup prometheus.
 
-  ```bash
-  docker run -d --rm \
-    --name=prometheus \
-    --network=synse \
-    -p 9090:9090 \
-    -v $PWD/example-config.yml:/etc/prometheus/prometheus.yml \
-    prom/prometheus
-  ```
+    ```bash
+    docker run -d --rm \
+        --name=prometheus \
+        --network=synse \
+        -p 9090:9090 \
+        -v $PWD/example-config.yml:/etc/prometheus/prometheus.yml \
+        prom/prometheus
+    ```
 
 To see some of the data we’re now collecting and monitoring:
 
@@ -213,25 +213,25 @@ To configure grafana and prometheus:
 
 1. Startup Grafana
 
-  ```bash
-  docker run -d --rm \
-    --name=grafana \
-    --network=synse \
-    -p 3000:3000 \
-    grafana/grafana
-  ```
+    ```bash
+    docker run -d --rm \
+        --name=grafana \
+        --network=synse \
+        -p 3000:3000 \
+        grafana/grafana
+    ```
 
 1. Visit `http://localhost:3000` in your browser.
 1. Login with admin/admin
 1. Click `Add data source`
 1. Fill out this form as follows:
 
-  ```
-  Name: prometheus
-  Type: Prometheus
-  Url: http://prometheus:9090/
-  Access: proxy
-  ```
+    ```
+    Name: prometheus
+    Type: Prometheus
+    Url: http://prometheus:9090/
+    Access: proxy
+    ```
 
 1. Click save and test. If there is a problem here, go back and check on Prometheus to make sure it is running.
 
