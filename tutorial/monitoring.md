@@ -4,7 +4,9 @@ Recent trends in automation are making it faster, easier and more reliable to op
 
 With Synse, there is now a simple HTTP interface (either RESTful or GraphQL) to read data from the sensors, devices and servers in your data center. This can be used to integrate with and drive automation systems. When a server gets too warm, the workloads on it can be migrated somewhere else without any human intervention. In the past, this would require writing custom implementations against all kinds of protocols such as IPMI and SNMP.
 
-We have a [video walkthrough][monitoring-with-synse] of this tutorial. Feel free to watch and follow along with instructions.
+# Video Walkthrough
+
+[![monitoring-with-synse](https://github.com/vapor-ware/synse/raw/master/img/monitoring-with-synse-keyframe.png)][monitoring-with-synse]
 
 # Exposing your Infrastructure with Synse
 
