@@ -4,9 +4,7 @@ Recent trends in automation are making it faster, easier and more reliable to op
 
 With Synse, there is now a simple HTTP interface (either RESTful or GraphQL) to read data from the sensors, devices and servers in your data center. This can be used to integrate with and drive automation systems. When a server gets too warm, the workloads on it can be migrated somewhere else without any human intervention. In the past, this would require writing custom implementations against all kinds of protocols such as IPMI and SNMP.
 
-# Video Walkthrough
-
-<iframe src="https://drive.google.com/file/d/0B9jWZzNsJ7juUlN6WHVwS2pqcDQ/preview" width="640" height="480"></iframe>
+We have a [video walkthrough][monitoring-with-synse] of this tutorial. Feel free to watch and follow along with instructions.
 
 # Exposing your Infrastructure with Synse
 
@@ -255,3 +253,4 @@ To create a Synse DC dashboard:
 [prometheus-query]: https://github.com/vapor-ware/synse-prometheus/blob/master/synse_prometheus/prometheus.py#L22
 [prometheus-getting-started]: https://prometheus.io/docs/introduction/getting_started/
 [prometheus-docs]: https://prometheus.io/docs/querying/basics/
+[monitoring-with-synse]: https://drive.google.com/file/d/0B9jWZzNsJ7juUlN6WHVwS2pqcDQ/view
