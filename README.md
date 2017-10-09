@@ -4,7 +4,7 @@ Synse is a simple, scalable API to data center equipment. It is an open standard
 
 # Getting Started
 
-- [Monitoring with Synse](tutorial/monitoring.md) - A great way to get an idea of the value that Synse can provide. Ths tutorial walks you through standing up an emulated environment and shows example integrations with [Prometheus][prometheus] and [Grafana][grafana]
+- [Monitoring with Synse](tutorial/monitoring.md) - A great way to get an idea of the value that Synse can provide. Ths tutorial walks you through standing up an emulated environment and shows example integrations with [Prometheus][prometheus] and [Grafana][grafana]. We have a [video walkthrough][monitoring-with-synse] if you'd like an overview.
 
 # Components
 
@@ -30,3 +30,4 @@ Synse is a simple, scalable API to data center equipment. It is an open standard
 [synse-cli]: https://github.com/vapor-ware/synse-cli
 [prometheus]: https://prometheus.io/
 [grafana]: https://grafana.com/
+[monitoring-with-synse]: https://drive.google.com/file/d/0B9jWZzNsJ7juUlN6WHVwS2pqcDQ/view

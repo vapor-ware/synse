@@ -4,6 +4,10 @@ Recent trends in automation are making it faster, easier and more reliable to op
 
 With Synse, there is now a simple HTTP interface (either RESTful or GraphQL) to read data from the sensors, devices and servers in your data center. This can be used to integrate with and drive automation systems. When a server gets too warm, the workloads on it can be migrated somewhere else without any human intervention. In the past, this would require writing custom implementations against all kinds of protocols such as IPMI and SNMP.
 
+# Video Walkthrough
+
+<iframe src="https://drive.google.com/file/d/0B9jWZzNsJ7juUlN6WHVwS2pqcDQ/preview" width="640" height="480"></iframe>
+
 # Exposing your Infrastructure with Synse
 
 As most of us don’t have a pile of spare servers sitting around ready to play with, Synse comes with a built-in an emulator that lets you try everything out in a safe environment.
