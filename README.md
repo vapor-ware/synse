@@ -1,6 +1,6 @@
 # Overview
 
-Synse is a simple, scalable API to data center equipment. It is an open standard for highly automated and programmatic operation and monitoring of data centers. It integrates with existing DCIM standards, including IPMI and Redfish, for monitoring IT equipment, and also integrates with critical data center systems, such as power and cooling, to provide a single source of telemetry for data centers of any size. Synse is capable of monitoring and managing thousands of endpoints in both centralized and distributed environments, and is ideally suited for building tools for remote and automated operations.
+Synse is a simple, scalable API for sensing and controlling data center equipment. It is an open standard for highly automated and programmatic operation and monitoring of data centers. It integrates with existing DCIM standards, including IPMI and Redfish, for monitoring IT equipment, and also integrates with critical data center systems, such as power and cooling, to provide a single source of telemetry for data centers of any size. Synse is capable of monitoring and managing thousands of endpoints in both centralized and distributed environments, and is ideally suited for building tools for remote and automated operations.
 
 # Getting Started
 
