@@ -19,38 +19,64 @@ environments, and is ideally suited for building tools for remote and automated 
   and [Grafana][grafana]. We have a [video walkthrough][monitoring-with-synse] if
   you'd like an overview.
 
-# Components
 
-## synse-server
+# The Synse Ecosystem
+There are a number of components that make up the Synse Ecosystem.
 
-[synse-server][synse-server] provides a simple JSON API to monitor and control physical
-and virtual devices. It provides a uniform HTTP interface for back-end plugins
-implementing various protocols, such as RS485, I2C, and IPMI. The Synse Server API
-makes it easy to read from and write to devices, gather device meta-information, and
-scan for devices across multiple back-ends through a curl-able interface.
+- [**vapor-ware/synse-server**][synse-server]: An HTTP server providing a uniform API to interact
+  with physical and virtual devices via plugin backends. This can be thought of as a 'front end'
+  for Synse Plugins.
 
-## synse-graphql
+- [**vapor-ware/synse-sdk**][synse-sdk]: The official SDK (written in Go) for Synse Plugin
+  development.
 
-[synse-graphql][synse-graphql] provides a GraphQL API that enables complex querying
-of your data center and IT equipment. The API comes with an interactive query
-application for exploration of the Synse API and provides a simple interface for
-common integrations.
+- [**vapor-ware/synse-server-grpc**][synse-grpc]: The gRPC API that is used for bidirectional
+  communication between Synse Server and the Synse Plugins.
 
-It also provides a [Prometheus][prometheus] exporter for the metrics being provided
-by your data center and IT equipment. You can use this, in conjunction with Prometheus
-to monitor these metrics and alert on them.
+- [**vapor-ware/synse-cli**][synse-cli]: A CLI that allows you to easily interact with
+  Synse Server and Plugins directly from the command line.
 
-## synse-cli
-
-[synse-cli][synse-cli] provides a command line interface to the underlying synse
-components. It allows for real-time queries and interaction with the physical and
-virtual devices managed by Synse Server and its plugins. It is meant to have feature
-parity with the Synse Server API.
+- [**vapor-ware/synse-graphql**][synse-graphql]: A GraphQL wrapper around Synse Server's
+  HTTP API that provides a powerful query language enabling simple aggregations and
+  operations over multiple devices. It also provides a [Prometheus][prometheus] exporter
+  for the metrics it gathers.
 
 
-[synse-server]: https://github.com/vapor-ware/synse-server
-[synse-graphql]: https://github.com/vapor-ware/synse-graphql
-[synse-cli]: https://github.com/vapor-ware/synse-cli
+# Synse Plugins
+In addition to the core components listed above, there is a growing collection of plugins
+build using the Synse SDK which extend the capabilities of Synse Server, and Synse as a platform.
+
+- [**Emulator**][synse-emulator-plugin]: A simple plugin with no hardware
+  dependencies that can serve as a plugin backend for Synse Server for development,
+  testing, and just getting familiar with how Synse Server works. A version of the Synse
+  Server docker images comes with this emulator plugin built-in.
+
+- [**SNMP**][synse-snmp-plugin]: A plugin that enables SNMP capabilities for the Synse platform.
+
+- [**IPMI**][synse-ipmi-plugin]: A plugin that enables basic IPMI functionality, including
+  reading/writing power status and boot target selection.
+
+- [**Intel AMT**][synse-amt-plugin]: A plugin for communicating with Intel AMT enabled machines.
+
+- [**Modbus IP**][synse-modbus-ip-plugin]: A basic, general purpose plugin for modbus over
+  IP.
+
+
+Plugins for the Synse Platform can be found via the [`synse-plugin`][synse-plugin-tag] GitHubtag.
+
+
 [prometheus]: https://prometheus.io/
 [grafana]: https://grafana.com/
 [monitoring-with-synse]: https://drive.google.com/file/d/0B9jWZzNsJ7juUlN6WHVwS2pqcDQ/view
+[synse-sdk]: https://github.com/vapor-ware/synse-sdk
+[synse-cli]: https://github.com/vapor-ware/synse-cli
+[synse-grpc]: https://github.com/vapor-ware/synse-server-grpc
+[synse-server]: https://github.com/vapor-ware/synse-server
+[synse-graphql]: https://github.com/vapor-ware/synse-graphql
+[synse-cli]: https://github.com/vapor-ware/synse-cli
+[synse-snmp-plugin]: https://github.com/vapor-ware/synse-snmp-plugin
+[synse-emulator-plugin]: https://github.com/vapor-ware/synse-emulator-plugin
+[synse-modbus-ip-plugin]: https://github.com/vapor-ware/synse-modbus-ip-plugin
+[synse-amt-plugin]: https://github.com/vapor-ware/synse-amt-plugin
+[synse-ipmi-plugin]: https://github.com/vapor-ware/synse-ipmi-plugin
+[synse-plugin-tag]: https://github.com/topics/synse-plugin
