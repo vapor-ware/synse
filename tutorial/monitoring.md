@@ -14,6 +14,13 @@ workloads on it can be migrated somewhere else without any human intervention.
 In the past, this would require writing custom implementations against all kinds
 of protocols such as IPMI and SNMP.
 
+This tutorial will go through the basics of getting Synse started up and hooked up
+to prometheus for monitoring and grafana for an example dashboard to visualize the
+data.
+
+Each section will go through this step by step. If you want to just get everything
+started up all at once, see the tutorial's corresponding [compose file](../compose/monitoring.yml).
+
 # Video Walkthrough
 
 [![monitoring-with-synse](https://github.com/vapor-ware/synse/raw/master/img/monitoring-with-synse-keyframe.png)][monitoring-with-synse]
@@ -114,8 +121,8 @@ look something like this:
 ```
 
 You’ll notice that while this is a list of all the sensors and devices, there are no
-readings. It is possible to get these via the HTTP API. Take a look at the [docs][synse-server-docs]
-for more details.
+readings. It is possible to get these via the HTTP API. Take a look at the [user guide][synse-server-docs]
+and [api docs][synse-server-api-docs] for more details.
 
 # Exploring your Infrastructure with GraphQL
 
@@ -297,7 +304,7 @@ possibilities like calculating 95th percentiles and standard deviations.
 Infrastructure needs a dashboard. Pairing prometheus with grafana gets you there.
 Just like prometheus, we’ll be using docker to run grafana.
 
-To configure grafana and prometheus:
+To configure grafana:
 
 1. Startup Grafana
 
@@ -327,7 +334,7 @@ To configure grafana and prometheus:
 To create a Synse DC dashboard:
 
 1. Visit `http://localhost:3000/dashboard/import` in your browser
-1. Add `2304` to `Grafana.com Dashboard`
+1. Add `6723` to `Grafana.com Dashboard` (see also: https://grafana.com/dashboards/6723)
 1. Select `prometheus` as the data source
 1. Click `Import`
 
@@ -340,7 +347,8 @@ own infrastructure.
 [docker]: https://docs.docker.com/engine/installation/
 [docker-compose]: https://docs.docker.com/compose/install/
 [synse-server]: https://github.com/vapor-ware/synse-server
-[synse-server-docs]: http://opendcre.com/
+[synse-server-docs]: http://synse-server.readthedocs.io/en/latest/
+[synse-server-api-docs]: https://vapor-ware.github.io/synse-server/
 [emulator-plugin]: https://github.com/vapor-ware/synse-emulator-plugin
 [synse-graphql]: https://github.com/vapor-ware/synse-graphql
 [synse-graphql-config]: https://github.com/vapor-ware/synse-graphql/tree/master/config
