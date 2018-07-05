@@ -23,14 +23,11 @@ services:
 
 
   # Synse GraphQL
-  # TODO -- config for synse-server -- I believe it should pick up synse-server
-  # via the default config, but it would be good to show an example of how to
-  # configure for non-default configs..
   synse-graphql:
     container_name: synse_graphql
     image: vaporio/synse-graphql
     ports:
-      - 5001:5001
+      - 5050:5050
     links:
       - synse-server
 
