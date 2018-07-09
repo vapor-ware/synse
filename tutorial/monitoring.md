@@ -23,7 +23,7 @@ started up all at once, see the tutorial's corresponding [compose file](../compo
 
 # Video Walkthrough
 
-[![monitoring-with-synse](https://github.com/vapor-ware/synse/raw/master/img/monitoring-with-synse-keyframe.png)][monitoring-with-synse]
+[![monitoring-with-synse](https://github.com/vapor-ware/synse/raw/master/img/monitoring-keyframe.png)][monitoring-with-synse]
 
 # Exposing your Infrastructure with Synse
 
@@ -384,4 +384,4 @@ own infrastructure.
 [synse-graphql-config]: https://github.com/vapor-ware/synse-graphql/tree/master/config
 [prometheus-getting-started]: https://prometheus.io/docs/introduction/getting_started/
 [prometheus-docs]: https://prometheus.io/docs/querying/basics/
-[monitoring-with-synse]: https://drive.google.com/file/d/0B9jWZzNsJ7juUlN6WHVwS2pqcDQ/view
+[monitoring-with-synse]: https://drive.google.com/file/d/1y6AydmJ_CjwUjA2sJiiEhOVAf8_4WJsx/view
