@@ -162,7 +162,7 @@ an idea of what you can do. To run synse-graphql, you'll need to:
     ```
 
 There is a built-in web interface that makes it easy to look at the schema and
-run queries. Go to [`http://localhost:5001/graphql`](http://localhost:5001/graphql)
+run queries. Go to [`http://localhost:5050/graphql`](http://localhost:5050/graphql)
 to pull it up. From there, you'll be able to write some queries against the emulated
 devices and see what data is available. A sample query that returns all the temperature
 data is:
