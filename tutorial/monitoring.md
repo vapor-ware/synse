@@ -14,9 +14,16 @@ workloads on it can be migrated somewhere else without any human intervention.
 In the past, this would require writing custom implementations against all kinds
 of protocols such as IPMI and SNMP.
 
+This tutorial will go through the basics of getting Synse started up and hooked up
+to prometheus for monitoring and grafana for an example dashboard to visualize the
+data.
+
+Each section will go through this step by step. If you want to just get everything
+started up all at once, see the tutorial's corresponding [compose file](../compose/monitoring.yml).
+
 # Video Walkthrough
 
-[![monitoring-with-synse](https://github.com/vapor-ware/synse/raw/master/img/monitoring-with-synse-keyframe.png)][monitoring-with-synse]
+[![monitoring-with-synse](https://github.com/vapor-ware/synse/raw/master/img/monitoring-keyframe.png)][monitoring-with-synse]
 
 # Exposing your Infrastructure with Synse
 
@@ -38,7 +45,7 @@ It takes just three simple steps to start playing with Synse Server:
     make docker
     ```
    
-   Or by pulling down the latest Synse Server docker image from DockerHub
+   Or more simply by pulling down the latest Synse Server docker image from DockerHub
    
     ```bash
     docker pull vaporio/synse-server
@@ -58,7 +65,7 @@ which features a single rack with a single board populated with a collection of
 emulated devices. You can check this out from the command line:
 
 ```bash
-curl http://localhost:5000/synse/2.0/scan
+curl http://localhost:5000/synse/v2/scan
 ```
 
 The response is a list of all the configured devices, their device types, and
@@ -110,12 +117,11 @@ look something like this:
     }
   ]
 }
-
 ```
 
-You’ll notice that while this is a list of all the sensors and devices, there are no
-readings. It is possible to get these via the HTTP API. Take a look at the [docs][synse-server-docs]
-for more details.
+For more information on how to use Synse Server's API for reading, writing, and getting
+more device info, take a look at the [user guide][synse-server-docs] and
+[api docs][synse-server-api-docs].
 
 # Exploring your Infrastructure with GraphQL
 
@@ -132,34 +138,34 @@ an idea of what you can do. To run synse-graphql, you'll need to:
     make build
     ```
    
-   Or by pulling down the latest Synse Server docker image from DockerHub
+   Or more simply by pulling down the latest Synse GraphQL docker image from DockerHub
    
     ```bash
     docker pull vaporio/synse-graphql
     ``` 
 
-2. Setup docker networking:
+2. Setup docker networking and attach Synse Server (which was started up in the previous section):
 
     ```bash
     docker network create synse
     docker network connect synse synse-server
     ```
 
-3. Startup synse-graphql.
+3. Startup synse-graphql and connect it to the same docker network.
 
     ```bash
     docker run -d --rm \
         --name=synse-graphql \
         --network=synse \
-        -e SYNSE_SERVER=synse-server:5000 \
-        -p 5001:5001 \
+        -p 5050:5050 \
         vaporio/synse-graphql
     ```
 
 There is a built-in web interface that makes it easy to look at the schema and
-run queries. Go to `http://localhost:5001/graphql` to pull it up. From here,
-you'll be able to write some queries against the emulated devices and see
-what data is available. A sample query that returns all the temperature data is:
+run queries. Go to [`http://localhost:5050/graphql`](http://localhost:5050/graphql)
+to pull it up. From there, you'll be able to write some queries against the emulated
+devices and see what data is available. A sample query that returns all the temperature
+data is:
 
 ```graphql
 {
@@ -167,17 +173,19 @@ what data is available. A sample query that returns all the temperature data is:
     id
     boards {
       id
-      devices(device_type:"temperature") {
+      devices(device_type: "temperature") {
         id
         info
         device_type
-        ... on TemperatureDevice {
-          temperature
+        readings {
+          reading_type
+          value
         }
       }
     }
   }
 }
+
 ```
 
 Paste that query into the left panel of GraphiQL and click run. You’ll see the result,
@@ -194,34 +202,59 @@ which looks something like this in the right panel:
             "id": "vec",
             "devices": [
               {
-                "id": "eb100067acb0c054cf877759db376b03",
-                "info": "Synse Temperature Sensor 1",
-                "device_type": "temperature",
-                "temperature": 68
-              },
-              {
-                "id": "f97f284037b04badb6bb7aacd9654a4e",
-                "info": "Synse Temperature Sensor 5",
-                "device_type": "temperature",
-                "temperature": 45
-              },
-              {
-                "id": "83cc1efe7e596e4ab6769e0c6e3edf88",
-                "info": "Synse Temperature Sensor 2",
-                "device_type": "temperature",
-                "temperature": 55
-              },
-              {
-                "id": "db1e5deb43d9d0af6d80885e74362913",
+                "id": "0fe8f06229aa9a01ef6032d1ddaf18a5",
                 "info": "Synse Temperature Sensor 3",
                 "device_type": "temperature",
-                "temperature": 80
+                "readings": [
+                  {
+                    "reading_type": "temperature",
+                    "value": "3"
+                  }
+                ]
               },
               {
-                "id": "329a91c6781ce92370a3c38ba9bf35b2",
+                "id": "45ffe8f7f7a2b0ae970b687abd06f9e6",
+                "info": "Synse Temperature Sensor 1",
+                "device_type": "temperature",
+                "readings": [
+                  {
+                    "reading_type": "temperature",
+                    "value": "57"
+                  }
+                ]
+              },
+              {
+                "id": "8f7ac60be5c8a3815ce89753de138edf",
+                "info": "Synse Temperature Sensor 5",
+                "device_type": "temperature",
+                "readings": [
+                  {
+                    "reading_type": "temperature",
+                    "value": "88"
+                  }
+                ]
+              },
+              {
+                "id": "3ee84834c79c5a124d858e237e81e186",
+                "info": "Synse Temperature Sensor 2",
+                "device_type": "temperature",
+                "readings": [
+                  {
+                    "reading_type": "temperature",
+                    "value": "68"
+                  }
+                ]
+              },
+              {
+                "id": "f441d97b2f6545ef3001a688489e820a",
                 "info": "Synse Temperature Sensor 4",
                 "device_type": "temperature",
-                "temperature": 22
+                "readings": [
+                  {
+                    "reading_type": "temperature",
+                    "value": "31"
+                  }
+                ]
               }
             ]
           }
@@ -232,8 +265,12 @@ which looks something like this in the right panel:
 }
 ```
 
-The emulator plugin provides multiple temperature sensors. These readings are
-randomized, so if you run the query again the result will be a little different.
+The emulator plugin provides multiple temperature sensors. The reading values are
+randomized, so if you run the query again the result will be a little different. Notice
+also that each device provides a list of readings -- this is because some devices may
+provide more than one data point. For example, an `led` type device should provide both
+a *state* reading and a *color* reading. You can see this by changing `device_type: "temperature"`
+in the query to `device_type: "led"`.
 
 # Monitoring your Infrastructure with Prometheus
 
@@ -248,7 +285,7 @@ these exporters by default. To verify that it is up and running as part of synse
 you can hit the same endpoint that Prometheus would to gather metrics:
 
 ```bash
-curl http://localhost:5001/metrics
+curl http://localhost:5050/metrics
 ```
 
 Once the Prometheus exporter starts up, it will immediately query Synse Server via
@@ -261,23 +298,24 @@ Next, we will run prometheus. We’ll be using docker to run prometheus. If you�
 to get this setup more seriously, check out the [getting started docs][prometheus-getting-started].
 To run Prometheus:
 
-1. Get into the `synse-graphql` directory, or just copy the `prometheus.yaml`
-   configuration from synse-grahql's [config][synse-graphql-config] locally.
-1. Startup prometheus.
+1. Startup prometheus. Here, `$PWD` is the directory of this tutorial, i.e. `synse/tutorial`
 
     ```bash
     docker run -d --rm \
         --name=prometheus \
         --network=synse \
         -p 9090:9090 \
-        -v $PWD/prometheus.yml:/etc/prometheus/prometheus.yml \
+        -v $PWD/../compose/config/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml \
         prom/prometheus
     ```
 
+> **Note**:
+> It may take a minute for prometheus to ingest the data, so if you aren't seeing any
+> data right away, give it some time and try again. 
+
 To see some of the data we’re now collecting and monitoring:
 
-1. Visit `http://localhost:9090` in your browser.
-1. Click on the graph tab.
+1. Visit [`http://localhost:9090/graph`](http://localhost:9090/graph) in your browser.
 1. Add `device_temperature_gauge_temperature` to the `Expression` area.
 1. Click execute.
 
@@ -297,7 +335,7 @@ possibilities like calculating 95th percentiles and standard deviations.
 Infrastructure needs a dashboard. Pairing prometheus with grafana gets you there.
 Just like prometheus, we’ll be using docker to run grafana.
 
-To configure grafana and prometheus:
+To configure grafana:
 
 1. Startup Grafana
 
@@ -309,26 +347,25 @@ To configure grafana and prometheus:
         grafana/grafana
     ```
 
-1. Visit `http://localhost:3000` in your browser.
+1. Visit [`http://localhost:3000`](http://localhost:3000) in your browser.
 1. Login with admin/admin
 1. Click `Add data source`
 1. Fill out this form as follows:
 
     ```
-    Name: prometheus
+    Name: synse
     Type: Prometheus
     Url: http://prometheus:9090/
-    Access: proxy
     ```
 
 1. Click save and test. If there is a problem here, go back and check on Prometheus
    to make sure it is running.
 
-To create a Synse DC dashboard:
+To create a Synse dashboard:
 
-1. Visit `http://localhost:3000/dashboard/import` in your browser
-1. Add `2304` to `Grafana.com Dashboard`
-1. Select `prometheus` as the data source
+1. Visit [`http://localhost:3000/dashboard/import`](http://localhost:3000/dashboard/import) in your browser
+1. Add `6723` to `Grafana.com Dashboard` (see also: https://grafana.com/dashboards/6723) and press the `Load` button
+1. Select `synse` as the prometheus data source
 1. Click `Import`
 
 Now, as the Synse Prometheus exporter exports Synse Server data, the dashboard
@@ -340,10 +377,11 @@ own infrastructure.
 [docker]: https://docs.docker.com/engine/installation/
 [docker-compose]: https://docs.docker.com/compose/install/
 [synse-server]: https://github.com/vapor-ware/synse-server
-[synse-server-docs]: http://opendcre.com/
+[synse-server-docs]: http://synse-server.readthedocs.io/en/latest/
+[synse-server-api-docs]: https://vapor-ware.github.io/synse-server/
 [emulator-plugin]: https://github.com/vapor-ware/synse-emulator-plugin
 [synse-graphql]: https://github.com/vapor-ware/synse-graphql
 [synse-graphql-config]: https://github.com/vapor-ware/synse-graphql/tree/master/config
 [prometheus-getting-started]: https://prometheus.io/docs/introduction/getting_started/
 [prometheus-docs]: https://prometheus.io/docs/querying/basics/
-[monitoring-with-synse]: https://drive.google.com/file/d/0B9jWZzNsJ7juUlN6WHVwS2pqcDQ/view
+[monitoring-with-synse]: https://drive.google.com/file/d/1y6AydmJ_CjwUjA2sJiiEhOVAf8_4WJsx/view

@@ -16,8 +16,8 @@ environments, and is ideally suited for building tools for remote and automated 
 - [Monitoring with Synse](tutorial/monitoring.md) - A great way to get an idea
   of the value that Synse can provide. This tutorial walks you through standing
   up an emulated environment and shows example integrations with [Prometheus][prometheus]
-  and [Grafana][grafana]. We have a [video walkthrough][monitoring-with-synse] if
-  you'd like an overview.
+  and [Grafana][grafana]. We have a [video walkthrough][monitoring-with-synse] that
+  follows along with this tutorial.
 
 
 # The Synse Ecosystem
