@@ -67,7 +67,7 @@ Plugins for the Synse Platform can be found via the [`synse-plugin`][synse-plugi
 
 [prometheus]: https://prometheus.io/
 [grafana]: https://grafana.com/
-[monitoring-with-synse]: https://drive.google.com/file/d/0B9jWZzNsJ7juUlN6WHVwS2pqcDQ/view
+[monitoring-with-synse]: https://drive.google.com/file/d/1y6AydmJ_CjwUjA2sJiiEhOVAf8_4WJsx/view
 [synse-sdk]: https://github.com/vapor-ware/synse-sdk
 [synse-cli]: https://github.com/vapor-ware/synse-cli
 [synse-grpc]: https://github.com/vapor-ware/synse-server-grpc
