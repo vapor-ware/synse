@@ -58,11 +58,11 @@ build using the Synse SDK which extend the capabilities of Synse Server, and Syn
 
 - [**Intel AMT**][synse-amt-plugin]: A plugin for communicating with Intel AMT enabled machines.
 
-- [**Modbus IP**][synse-modbus-ip-plugin]: A basic, general purpose plugin for modbus over
-  IP.
+- [**Modbus TCP/IP**][synse-modbus-ip-plugin]: A basic, general purpose plugin for modbus over
+  TCP/IP.
 
 
-Plugins for the Synse Platform can be found via the [`synse-plugin`][synse-plugin-tag] GitHubtag.
+Plugins for the Synse Platform can be found via the [`synse-plugin`][synse-plugin-tag] GitHub tag.
 
 
 [prometheus]: https://prometheus.io/
