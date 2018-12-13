@@ -65,6 +65,31 @@ build using the Synse SDK which extend the capabilities of Synse Server, and Syn
 Plugins for the Synse Platform can be found via the [`synse-plugin`][synse-plugin-tag] GitHub tag.
 
 
+# Helm Charts
+If you are looking to deploy Synse on [Kubernetes][kubernetes] we provide some [Helm][helm]
+charts for Synse Server and some of the Synse plugins. [Our charts][synse-charts] are actively
+maintained and will be added to when new plugins are created.
+
+You can add our helm chart repo to your local helm server with
+```
+helm repo add synse https://charts.vapor.io
+```
+
+To see the available helm charts, you can check out our [chart repo][synse-charts], or
+search for `synse` with `helm`
+
+```
+$ helm search synse
+NAME               	CHART VERSION	APP VERSION	DESCRIPTION
+synse/synse-server 	0.1.1        	2.2.4      	An HTTP API for the monitoring and control of physical an...
+synse/emulator     	0.1.0        	2.2.0      	Emulator plugin for Synse Server.
+synse/modbus       	0.2.0        	1.1.0      	Synse Modbus Over IP Plugin.
+synse/snmp         	0.1.0        	           	snmp
+```
+
+
+[kubernetes]: https://kubernetes.io/
+[helm]: https://helm.sh/
 [prometheus]: https://prometheus.io/
 [grafana]: https://grafana.com/
 [monitoring-with-synse]: https://drive.google.com/file/d/1y6AydmJ_CjwUjA2sJiiEhOVAf8_4WJsx/view
@@ -80,3 +105,4 @@ Plugins for the Synse Platform can be found via the [`synse-plugin`][synse-plugi
 [synse-amt-plugin]: https://github.com/vapor-ware/synse-amt-plugin
 [synse-ipmi-plugin]: https://github.com/vapor-ware/synse-ipmi-plugin
 [synse-plugin-tag]: https://github.com/topics/synse-plugin
+[synse-charts]: https://charts.vapor.io
