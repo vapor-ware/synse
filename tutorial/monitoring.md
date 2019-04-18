@@ -1,5 +1,10 @@
 # Monitoring your physical infrastructure with Synse
 
+> **NOTE:** This tutorial uses the Synse GraphQL project to provide a prometheus
+> exporter for Synse data. The Synse GraphQL project has been deprecated and is
+> no longer supported in any fashion. The references to it are maintained in this
+> tutorial until an alternative workflow for Synse data visualization is configured.
+
 Recent trends in automation are making it faster, easier, and more reliable to
 operate applications and data centers. Containerization and the devops movement
 are all about automating tasks that used to be manual. So far, these have stopped
@@ -7,7 +12,7 @@ at the software layer and treated underlying hardware as if it was homogeneous.
 In the real world, that isn’t the case. Synse provides the missing piece to automate
 your data center from top to bottom.
 
-With Synse, there is now a simple HTTP interface (either JSON or GraphQL) to read
+With Synse, there is now a simple HTTP interface to read
 data from the sensors, devices, and servers in your data center. This can be used
 to integrate with and drive automation systems. When a server gets too warm, the
 workloads on it can be migrated somewhere else without any human intervention.
@@ -124,6 +129,9 @@ more device info, take a look at the [user guide][synse-server-docs] and
 [api docs][synse-server-api-docs].
 
 # Exploring your Infrastructure with GraphQL
+
+> **Note:** Synse GraphQL is deprecated - this section will be replaced once an alternative
+> data export method is configured.
 
 Writing scripts or running lots of CURL commands gets old quickly. GraphQL provides a
 simple interface for querying your infrastructure, exploring what's there and getting

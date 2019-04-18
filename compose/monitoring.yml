@@ -23,6 +23,9 @@ services:
 
 
   # Synse GraphQL
+  # NOTE: This component is deprecated and will not be supported moving
+  #   forward. This component will be removed when an alternative data
+  #   export method is configured.
   synse-graphql:
     container_name: synse_graphql
     image: vaporio/synse-graphql
