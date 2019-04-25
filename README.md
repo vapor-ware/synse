@@ -36,11 +36,6 @@ There are a number of components that make up the Synse Ecosystem.
 - [**vapor-ware/synse-cli**][synse-cli]: A CLI that allows you to easily interact with
   Synse Server and Plugins directly from the command line.
 
-- [**vapor-ware/synse-graphql**][synse-graphql]: A GraphQL wrapper around Synse Server's
-  HTTP API that provides a powerful query language enabling simple aggregations and
-  operations over multiple devices. It also provides a [Prometheus][prometheus] exporter
-  for the metrics it gathers.
-
 
 # Synse Plugins
 In addition to the core components listed above, there is a growing collection of plugins
@@ -97,7 +92,6 @@ synse/snmp         	0.1.0        	           	snmp
 [synse-cli]: https://github.com/vapor-ware/synse-cli
 [synse-grpc]: https://github.com/vapor-ware/synse-server-grpc
 [synse-server]: https://github.com/vapor-ware/synse-server
-[synse-graphql]: https://github.com/vapor-ware/synse-graphql
 [synse-cli]: https://github.com/vapor-ware/synse-cli
 [synse-snmp-plugin]: https://github.com/vapor-ware/synse-snmp-plugin
 [synse-emulator-plugin]: https://github.com/vapor-ware/synse-emulator-plugin
