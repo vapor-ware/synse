@@ -1,4 +1,7 @@
-<p align="center"><img src="img/logo.png" width="360"></p>
+<p align="center">
+  <img src="img/logo.png" width="360"><br />
+  <img alt="Data Driven" src="img/data-driven.png" width="250" />
+</p>
 
 ## Overview
 
